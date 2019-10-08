@@ -14,6 +14,8 @@ public class Inspector
 
     private void inspectClass(Class c, Object obj, boolean recursive, int depth) 
     {
+    	printWithTabs("Entered new class inspection", depth);
+    	printWithTabs("----------------------------", depth);
     	// Class Name
     	printWithTabs("Class Name: " + c.getName(), depth);
     	
@@ -29,17 +31,15 @@ public class Inspector
     	}
     	
     	// Constructors
-    	int i = 0;
     	for (Constructor con : c.getDeclaredConstructors())
     	{
-    		String conPrefix = "Constructor " + i++; 
-    		printWithTabs(conPrefix + " name: " + con.getName(), depth);
+    		printWithTabs("Constructor name: " + con.getName(), depth);
     		for (Parameter p : con.getParameters())
     		{
-    			printWithTabs(conPrefix + " parameter type: " +p.getType().getName(), depth);
+    			printWithTabs(" Parameter type: " +p.getType().getName(), depth);
     		}
     		int mod = con.getModifiers();
-    		printWithTabs(conPrefix + " modifiers: " + Modifier.toString(mod), depth);
+    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
     		
     	}
     }
