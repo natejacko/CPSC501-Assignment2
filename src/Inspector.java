@@ -1,4 +1,5 @@
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 
@@ -16,6 +17,7 @@ public class Inspector
     {
     	printWithTabs("Entered new class inspection", depth);
     	printWithTabs("----------------------------", depth);
+    	
     	// Class Name
     	printWithTabs("Class Name: " + c.getName(), depth);
     	
@@ -42,6 +44,24 @@ public class Inspector
     		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
     		
     	}
+    	
+    	// Methods
+    	for (Method m : c.getDeclaredMethods())
+    	{
+    		printWithTabs("Method name: " + m.getName(), depth);
+    		for (Class e : m.getExceptionTypes())
+    		{
+    			printWithTabs(" Throws: " + e.getName(), depth);
+    		}
+    		for (Class p : m.getParameterTypes())
+    		{
+    			printWithTabs(" Parameter type: " + p.getName(), depth);
+    		}
+    		printWithTabs(" Return type: " + m.getReturnType().getName(), depth);
+    		int mod = m.getModifiers();
+    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
+    	}
+    	
     }
 
     private void printWithTabs(String output, int tabs)

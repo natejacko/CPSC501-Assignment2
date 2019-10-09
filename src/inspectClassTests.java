@@ -134,4 +134,19 @@ public class inspectClassTests
 		assert(output.contains(e1));
 		assert(output.contains(e2));
 	}
+	
+	@Test
+	public void testTestClasstestMethod1()
+	{
+		new Inspector().inspect(new TestClass(), false);
+		String e1 = "\nMethod name: testMethod1";
+		String e2 = "\n Throws: java.lang.NoSuchFieldException";
+		String e3 = "\n Throws: java.lang.NumberFormatException";
+		String e4 = "\n Parameter type: int";
+		String e5 = "\n Parameter type: java.lang.String";
+		String e6 = "\n Return type: [[B";
+		String e7 = "\n Modifiers: public static";
+		
+		assert(outStream.toString().contains(e1 + e2 + e3 + e4 + e5 + e6 + e7));
+	}
 }

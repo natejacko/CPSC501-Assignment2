@@ -17,4 +17,9 @@ public class TestClass
 	{
 		// do nothing
 	}
+	
+	public static byte[][] testMethod1(int a, String b) throws NoSuchFieldException, NumberFormatException
+	{
+		return null;
+	}
 }
