@@ -11,7 +11,6 @@ public class inspectClassTests
 {
 	private static final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 
-	
 	@BeforeClass
 	public static void setUpOutput()
 	{
@@ -111,5 +110,28 @@ public class inspectClassTests
 		while (idx > 0);
 		
 		assertFalse(constructorCount == 0);
+	}
+	
+	@Test
+	public void testStringConstructorParametersAndModifier()
+	{
+		new Inspector().inspect(new String(), false);
+		// Looking for the Constructor public String(Byte[], int)
+		String e1 = "\n Parameter type: [B";
+		String e2 = "\n Parameter type: int";
+		String e3 = "\n Modifiers: public";
+		
+		assert(outStream.toString().contains(e1 + e2 + e3));
+	}
+	
+	@Test
+	public void testPrivateAndProtectedConstructors()
+	{
+		new Inspector().inspect(new TestClass(), false);
+		String e1 = "\n Modifiers: protected";
+		String e2 = "\n Modifiers: private";
+		String output = outStream.toString();
+		assert(output.contains(e1));
+		assert(output.contains(e2));
 	}
 }
