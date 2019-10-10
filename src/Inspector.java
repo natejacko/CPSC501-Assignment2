@@ -1,4 +1,5 @@
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -62,6 +63,87 @@ public class Inspector
     		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
     	}
     	
+    	// Fields
+    	for (Field f: c.getDeclaredFields())
+    	{
+    		printWithTabs("Field name: " + f.getName(), depth);
+    		Class type = f.getType();
+    		printWithTabs(" Type: " + type.getName(), depth);
+    		int mod = f.getModifiers();
+    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
+			// TODO Check if the modifier check needs to be done on everything, or just non-public?
+    		f.setAccessible(true);
+    		if (type.isPrimitive())
+    		{
+				try 
+				{
+	    			Object value = null;
+	    			if (type.equals(boolean.class))
+	    			{
+	    				value = f.getBoolean(obj);
+	    			}
+	    			else if (type.equals(byte.class))
+	    			{
+	    				value = f.getByte(obj);
+	    			}
+	    			else if (type.equals(char.class))
+	    			{
+	    				value = f.getChar(obj);
+	    			}
+	    			else if (type.equals(double.class))
+	    			{
+	    				value = f.getDouble(obj);
+	    			}
+	    			else if (type.equals(float.class))
+	    			{
+	    				value = f.getFloat(obj);
+	    			}
+	    			else if (type.equals(int.class))
+	    			{
+	    				value = f.getInt(obj);
+	    			}
+	    			else if (type.equals(long.class))
+	    			{
+	    				value = f.getLong(obj);
+	    			}
+	    			else if (type.equals(short.class))
+	    			{
+	    				value = f.getShort(obj);
+	    			}
+	    			printWithTabs(" Value: " + value.toString(), depth);
+				} 
+				catch (IllegalArgumentException | IllegalAccessException e) 
+				{
+					e.printStackTrace();
+				} 
+    		}
+    		else if (type.isArray())
+    		{
+        		// TODO inspect arrays	
+    		}
+    		else
+    		{
+        		// TODO inspect objects (with recursion if flagged)
+    			try 
+    			{
+    				// If the field is an object that is not null, print the reference to it
+    				// i.e. the object's class name and the objects hash code
+    				Object referenceObj = f.get(obj);
+    				if (referenceObj != null)
+    				{
+    					printWithTabs(" Reference value: " + referenceObj.getClass().getName() + "@" + referenceObj.hashCode() , depth);
+    				}
+    				else
+    				{
+    					printWithTabs(" Reference value: null", depth);
+    				}
+				} 
+    			catch (IllegalArgumentException | IllegalAccessException e) 
+    			{
+					e.printStackTrace();
+				}
+    		}
+    	}
     }
 
     private void printWithTabs(String output, int tabs)
