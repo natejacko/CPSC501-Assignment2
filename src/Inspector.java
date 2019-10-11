@@ -18,9 +18,9 @@ public class Inspector
     public void inspectClass(Class c, Object obj, boolean recursive, int depth) 
     {
 		// Type checking
-		if (obj == null || obj.getClass() != c)
+		if (obj == null || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj class not equal to c or obj null in call to inspectClass");
+			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectClass", depth);
 			return;
 		}
     	
@@ -36,8 +36,6 @@ public class Inspector
     		printWithTabs(obj.toString(), depth);
     		return;
     	}
-    	
-    	// TODO if this itself is java.lang.Object, make sure not not inspect super-class, interfaces, etc.
     	
     	printWithTabs("Class Name: " + c.getName(), depth);
     	
@@ -56,38 +54,56 @@ public class Inspector
     public void inspectSuperClass(Class c, Object obj, boolean recursive, int depth)
     {
 		// Type checking
-		if (obj == null || obj.getClass() != c)
+		if (obj == null || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj class not equal to c  or obj null in call to inspectSuperClass");
+			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectSuperClass", depth);
 			return;
 		}
 		
-    	//TODO inspect super-class
-    	printWithTabs("Super-class Name: " + c.getSuperclass().getName(), depth);
+		// Check Object class
+		if (c.equals(Object.class))
+		{
+			printWithTabs("Object class is the super-class of itself", depth);
+			return;
+		}
+		
+		Class superClass = c.getSuperclass();
+		
+		// Handle null super-classes separately (interfaces, primitives, etc.)
+		if (superClass != null)
+		{
+	    	printWithTabs("Super-class Name: " + superClass.getName(), depth);
+	    	
+	    	inspectClass(superClass, obj, recursive, depth + 1);
+		}
+		else
+		{
+			printWithTabs("No super-class", depth);
+		}
     }
     
     public void inspectInterfaces(Class c, Object obj, boolean recursive, int depth)
     {
 		// Type checking
-		if (obj == null || obj.getClass() != c)
+		if (obj == null || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj class not equal to c  or obj null in call to inspectInterfaces");
+			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectInterfaces", depth);
 			return;
 		}
 		
-    	//TODO inspect interfaces recursively
     	for (Class i : c.getInterfaces())
     	{
     		printWithTabs("Implements: " + i.getName(), depth);
+    		inspectClass(i, obj, recursive, depth + 1);
     	}
     }
     
     public void inspectConstructors(Class c, Object obj, int depth)
     {
 		// Type checking
-		if (obj == null || obj.getClass() != c)
+		if (obj == null || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj class not equal to c  or obj null in call to inspectConstructors");
+			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectConstructors", depth);
 			return;
 		}
 		
@@ -106,9 +122,9 @@ public class Inspector
     public void inspectMethods(Class c, Object obj, int depth)
     {
 		// Type checking
-		if (obj == null || obj.getClass() != c)
+		if (obj == null || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj class not equal to c  or obj null in call to inspectMethods");
+			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectMethods", depth);
 			return;
 		}
 		
@@ -136,9 +152,9 @@ public class Inspector
     public void inspectFields(Class c, Object obj, boolean recursive, int depth)
     {
 		// Type checking
-		if (obj == null || obj.getClass() != c)
+		if (obj == null || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj class not equal to c  or obj null in call to inspectFields");
+			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectFields", depth);
 			return;
 		}
 		
@@ -187,9 +203,9 @@ public class Inspector
 	public void inspectArray(Class c, Object obj, boolean recursive, int depth, int arrDepth)
 	{
 		// Type checking
-		if (obj == null || !c.isArray() || !obj.getClass().isArray() || obj.getClass() != c)
+		if (obj == null || !c.isArray() || !obj.getClass().isArray() || !c.isAssignableFrom(obj.getClass()))
 		{
-			System.out.println("obj null or class not an array or obj class not equal to c in call to inspectArray");
+			printWithTabs("ERROR: obj null or class not an array or obj class not assignable to c in call to inspectArray", depth);
 			return;
 		}
 		
