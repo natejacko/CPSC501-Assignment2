@@ -1,6 +1,12 @@
 
 public class TestClass 
 {
+	private String[] test = new String[] { "a", "b", "c"};
+	byte b = 0;
+	char c = 'c';
+	boolean bool = true;
+	String testString = "abc";
+	
 	// Private constructor
 	private TestClass(int a, char b)
 	{
@@ -10,7 +16,7 @@ public class TestClass
 	// Public constructor
 	public TestClass(int a, int b)
 	{
-		// do nothing
+		//do nothing
 	}
 	
 	protected TestClass()

@@ -39,6 +39,10 @@ public class Inspector
     	
     	printWithTabs("Class Name: " + c.getName(), depth);
     	
+    	// Not listed as part of the assignment, but may be useful
+		int mod = c.getModifiers();
+		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
+    	
     	inspectSuperClass(c, obj, recursive, depth);
     	
     	inspectInterfaces(c, obj, recursive, depth);
@@ -94,6 +98,7 @@ public class Inspector
     	for (Class i : c.getInterfaces())
     	{
     		printWithTabs("Implements: " + i.getName(), depth);
+    		
     		inspectClass(i, obj, recursive, depth + 1);
     	}
     }
@@ -110,10 +115,12 @@ public class Inspector
     	for (Constructor con : c.getDeclaredConstructors())
     	{
     		printWithTabs("Constructor name: " + con.getName(), depth);
+    		
     		for (Parameter p : con.getParameters())
     		{
     			printWithTabs(" Parameter type: " +p.getType().getName(), depth);
     		}
+    		
     		int mod = con.getModifiers();
     		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
     	}
@@ -194,8 +201,16 @@ public class Inspector
     		}
     		else
     		{
-				// TODO recursively check objects if flag is on
-    			printWithTabs(" Reference value: " + fieldObj.getClass().getName() + "@" + fieldObj.hashCode() , depth);
+    			if (recursive)
+    			{
+    				printWithTabs(" Value:", depth);
+    				
+    				inspectClass(fieldType, fieldObj, recursive, depth + 1);
+    			}
+    			else
+    			{
+    				printWithTabs(" Reference value: " + fieldType.getName() + "@" + fieldObj.hashCode() , depth);
+    			}
     		}
     	}
     }
@@ -237,12 +252,21 @@ public class Inspector
 			else if (compType.isArray())
 			{
 				printWithTabsAndSpaces(i + ": Array", depth, arrDepth);
+				
 				inspectArray(arrayObj.getClass(), arrayObj, recursive, depth, arrDepth + 1);
 			}
 			else
 			{
-				// TODO recursively check objects if flag is on
-				printWithTabsAndSpaces(i + ": " + arrayObj.getClass().getName() + "@" + arrayObj.hashCode() , depth, arrDepth);
+    			if (recursive)
+    			{
+    				printWithTabsAndSpaces(i + ":" , depth, arrDepth);
+    				
+    				inspectClass(arrayObj.getClass(), arrayObj, recursive, depth + 1);
+    			}
+    			else
+    			{
+    				printWithTabsAndSpaces(i + ": " + arrayObj.getClass().getName() + "@" + arrayObj.hashCode() , depth, arrDepth);
+    			}
 			}
 		}
 	}
