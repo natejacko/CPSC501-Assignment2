@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,7 +9,7 @@ public class Inspector
 {
 
     public void inspect(Object obj, boolean recursive) 
-    {
+    {    			
         Class c = obj.getClass();
         System.out.println("Begin Inspection:\n");
         inspectClass(c, obj, recursive, 0);
@@ -18,6 +19,20 @@ public class Inspector
     {
     	printWithTabs("Entered new class inspection", depth);
     	printWithTabs("----------------------------", depth);
+    	
+    	// TODO if this itself is an array, inspect (component type, length, contents)
+    	if (c.isArray())
+    	{
+    		printWithTabs("Array inspection not complete yet", depth);
+    		return;
+    	}
+    	if (c.isPrimitive())
+    	{
+    		printWithTabs("Primitive inspection not complete yet", depth);
+    		return;
+    	}
+    	
+    	// TODO if this itself is java.lang.Object, make sure not not inspect super-class, interfaces, etc.
     	
     	// Class Name
     	printWithTabs("Class Name: " + c.getName(), depth);
@@ -119,7 +134,38 @@ public class Inspector
     		}
     		else if (type.isArray())
     		{
-        		// TODO inspect arrays	
+        		// TODO inspect arrays
+    			Class fieldCompType = type.getComponentType();
+    			printWithTabs(" Component type: " + fieldCompType.getName(), depth);
+    			try
+				{
+    				int length = Array.getLength(f.get(obj));
+					printWithTabs(" Length: " + length, depth);
+					if (length > 0)
+					{
+						printWithTabs(" Array contents:", depth);
+					}
+					for (int i = 0; i < length; i++)
+					{
+						Object arrayObj = Array.get(f.get(obj), i);
+						if (fieldCompType.isPrimitive())
+						{
+							printWithTabs("  " + i + ": " + arrayObj, depth);
+						}
+						else if (fieldCompType.isArray())
+						{
+							// TODO make this a method (could infinitely go on)
+						}
+						else
+						{
+							// TODO same here
+						}
+					}
+				} 
+    			catch (IllegalArgumentException | IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
     		}
     		else
     		{
