@@ -18,9 +18,9 @@ public class Inspector
     public void inspectClass(Class c, Object obj, boolean recursive, int depth) 
     {
 		// Type checking
-		if (obj.getClass() != c)
+		if (obj == null || obj.getClass() != c)
 		{
-			System.out.println("Invalid call to inspectClass(Class, Object, boolean, int)");
+			System.out.println("obj class not equal to c or obj null in call to inspectClass");
 			return;
 		}
     	
@@ -29,29 +29,68 @@ public class Inspector
     		inspectArray(c, obj, recursive, depth, 0);
     		return;
     	}
+    	
+    	// TODO Not sure if this is even needed, try to test and if needed, check what needs to be returned
     	if (c.isPrimitive())
     	{
-    		printWithTabs("Primitive inspection not complete yet", depth);
+    		printWithTabs(obj.toString(), depth);
     		return;
     	}
     	
     	// TODO if this itself is java.lang.Object, make sure not not inspect super-class, interfaces, etc.
     	
-    	// Class Name
     	printWithTabs("Class Name: " + c.getName(), depth);
     	
-    	// Super-class
+    	inspectSuperClass(c, obj, recursive, depth);
+    	
+    	inspectInterfaces(c, obj, recursive, depth);
+    	
+    	inspectConstructors(c, obj, depth);
+    	
+    	inspectMethods(c, obj, depth);
+    	
+    	inspectFields(c, obj, recursive, depth);
+    	
+    }
+    
+    public void inspectSuperClass(Class c, Object obj, boolean recursive, int depth)
+    {
+		// Type checking
+		if (obj == null || obj.getClass() != c)
+		{
+			System.out.println("obj class not equal to c  or obj null in call to inspectSuperClass");
+			return;
+		}
+		
     	//TODO inspect super-class
     	printWithTabs("Super-class Name: " + c.getSuperclass().getName(), depth);
-    	
-    	// Interfaces
+    }
+    
+    public void inspectInterfaces(Class c, Object obj, boolean recursive, int depth)
+    {
+		// Type checking
+		if (obj == null || obj.getClass() != c)
+		{
+			System.out.println("obj class not equal to c  or obj null in call to inspectInterfaces");
+			return;
+		}
+		
     	//TODO inspect interfaces recursively
     	for (Class i : c.getInterfaces())
     	{
-    		printWithTabs("Implements: " + i, depth);
+    		printWithTabs("Implements: " + i.getName(), depth);
     	}
-    	
-    	// Constructors
+    }
+    
+    public void inspectConstructors(Class c, Object obj, int depth)
+    {
+		// Type checking
+		if (obj == null || obj.getClass() != c)
+		{
+			System.out.println("obj class not equal to c  or obj null in call to inspectConstructors");
+			return;
+		}
+		
     	for (Constructor con : c.getDeclaredConstructors())
     	{
     		printWithTabs("Constructor name: " + con.getName(), depth);
@@ -61,113 +100,86 @@ public class Inspector
     		}
     		int mod = con.getModifiers();
     		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
-    		
     	}
-    	
-    	// Methods
+    }
+    
+    public void inspectMethods(Class c, Object obj, int depth)
+    {
+		// Type checking
+		if (obj == null || obj.getClass() != c)
+		{
+			System.out.println("obj class not equal to c  or obj null in call to inspectMethods");
+			return;
+		}
+		
     	for (Method m : c.getDeclaredMethods())
     	{
     		printWithTabs("Method name: " + m.getName(), depth);
+    		
     		for (Class e : m.getExceptionTypes())
     		{
     			printWithTabs(" Throws: " + e.getName(), depth);
     		}
+    		
     		for (Class p : m.getParameterTypes())
     		{
     			printWithTabs(" Parameter type: " + p.getName(), depth);
     		}
+    		
     		printWithTabs(" Return type: " + m.getReturnType().getName(), depth);
+    		
     		int mod = m.getModifiers();
     		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
     	}
-    	
-    	// Fields
+    }
+    
+    public void inspectFields(Class c, Object obj, boolean recursive, int depth)
+    {
+		// Type checking
+		if (obj == null || obj.getClass() != c)
+		{
+			System.out.println("obj class not equal to c  or obj null in call to inspectFields");
+			return;
+		}
+		
     	for (Field f: c.getDeclaredFields())
     	{
     		printWithTabs("Field name: " + f.getName(), depth);
-    		Class type = f.getType();
-    		printWithTabs(" Type: " + type.getName(), depth);
+    		
+    		Class fieldType = f.getType();
+    		printWithTabs(" Type: " + fieldType.getName(), depth);
+    		
     		int mod = f.getModifiers();
     		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
-			// TODO Check if the modifier check needs to be done on everything, or just non-public?
+    		
     		f.setAccessible(true);
-    		if (type.isPrimitive())
+    		
+    		Object fieldObj = null;
+    		try
+			{
+				fieldObj = f.get(obj);
+			} 
+    		catch (IllegalArgumentException | IllegalAccessException e)
+			{
+				e.printStackTrace();
+			}
+    		
+    		if (fieldType.isPrimitive())
     		{
-				try 
-				{
-	    			Object value = null;
-	    			if (type.equals(boolean.class))
-	    			{
-	    				value = f.getBoolean(obj);
-	    			}
-	    			else if (type.equals(byte.class))
-	    			{
-	    				value = f.getByte(obj);
-	    			}
-	    			else if (type.equals(char.class))
-	    			{
-	    				value = f.getChar(obj);
-	    			}
-	    			else if (type.equals(double.class))
-	    			{
-	    				value = f.getDouble(obj);
-	    			}
-	    			else if (type.equals(float.class))
-	    			{
-	    				value = f.getFloat(obj);
-	    			}
-	    			else if (type.equals(int.class))
-	    			{
-	    				value = f.getInt(obj);
-	    			}
-	    			else if (type.equals(long.class))
-	    			{
-	    				value = f.getLong(obj);
-	    			}
-	    			else if (type.equals(short.class))
-	    			{
-	    				value = f.getShort(obj);
-	    			}
-	    			printWithTabs(" Value: " + value.toString(), depth);
-				} 
-				catch (IllegalArgumentException | IllegalAccessException e) 
-				{
-					e.printStackTrace();
-				} 
+    			printWithTabs(" Value: " + fieldObj.toString(), depth);
     		}
-    		else if (type.isArray())
+    		else if (fieldObj == null)
     		{
-    			try
-				{
-    				// Give arrDepth of 1 for some better indentation in output
-					inspectArray(type, f.get(obj), recursive, depth, 1);
-				} 
-    			catch (IllegalArgumentException | IllegalAccessException e1)
-				{
-					e1.printStackTrace();
-				}
+    			printWithTabs(" Value: null", depth);
+    		}
+    		else if (fieldType.isArray())
+    		{
+				inspectArray(fieldType, fieldObj, recursive, depth, 1);
     		}
     		else
     		{
-        		// TODO inspect objects (with recursion if flagged)
-    			try 
-    			{
-    				// If the field is an object that is not null, print the reference to it
-    				// i.e. the object's class name and the objects hash code
-    				Object referenceObj = f.get(obj);
-    				if (referenceObj != null)
-    				{
-    					printWithTabs(" Reference value: " + referenceObj.getClass().getName() + "@" + referenceObj.hashCode() , depth);
-    				}
-    				else
-    				{
-    					printWithTabs(" Reference value: null", depth);
-    				}
-				} 
-    			catch (IllegalArgumentException | IllegalAccessException e) 
-    			{
-					e.printStackTrace();
-				}
+				// TODO recursively check objects if flag is on
+    			printWithTabs(" Reference value: " + fieldObj.getClass().getName() + "@" + fieldObj.hashCode() , depth);
     		}
     	}
     }
@@ -175,9 +187,9 @@ public class Inspector
 	public void inspectArray(Class c, Object obj, boolean recursive, int depth, int arrDepth)
 	{
 		// Type checking
-		if (!c.isArray() || !obj.getClass().isArray() || obj.getClass() != c)
+		if (obj == null || !c.isArray() || !obj.getClass().isArray() || obj.getClass() != c)
 		{
-			System.out.println("Invalid call to inspectArray(Class, Object, boolean, int, int)");
+			System.out.println("obj null or class not an array or obj class not equal to c in call to inspectArray");
 			return;
 		}
 		
@@ -204,7 +216,7 @@ public class Inspector
 			}
 			else if (compType.isPrimitive())
 			{
-				printWithTabsAndSpaces(i + ": " + arrayObj, depth, arrDepth);
+				printWithTabsAndSpaces(i + ": " + arrayObj.toString(), depth, arrDepth);
 			}
 			else if (compType.isArray())
 			{
