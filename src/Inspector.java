@@ -15,15 +15,18 @@ public class Inspector
         inspectClass(c, obj, recursive, 0);
     }
 
-    private void inspectClass(Class c, Object obj, boolean recursive, int depth) 
+    public void inspectClass(Class c, Object obj, boolean recursive, int depth) 
     {
-    	printWithTabs("Entered new class inspection", depth);
-    	printWithTabs("----------------------------", depth);
+		// Type checking
+		if (obj.getClass() != c)
+		{
+			System.out.println("Invalid call to inspectClass(Class, Object, boolean, int)");
+			return;
+		}
     	
-    	// TODO if this itself is an array, inspect (component type, length, contents)
     	if (c.isArray())
     	{
-    		printWithTabs("Array inspection not complete yet", depth);
+    		inspectArray(c, obj, recursive, depth, 0);
     		return;
     	}
     	if (c.isPrimitive())
@@ -134,37 +137,14 @@ public class Inspector
     		}
     		else if (type.isArray())
     		{
-        		// TODO inspect arrays
-    			Class fieldCompType = type.getComponentType();
-    			printWithTabs(" Component type: " + fieldCompType.getName(), depth);
     			try
 				{
-    				int length = Array.getLength(f.get(obj));
-					printWithTabs(" Length: " + length, depth);
-					if (length > 0)
-					{
-						printWithTabs(" Array contents:", depth);
-					}
-					for (int i = 0; i < length; i++)
-					{
-						Object arrayObj = Array.get(f.get(obj), i);
-						if (fieldCompType.isPrimitive())
-						{
-							printWithTabs("  " + i + ": " + arrayObj, depth);
-						}
-						else if (fieldCompType.isArray())
-						{
-							// TODO make this a method (could infinitely go on)
-						}
-						else
-						{
-							// TODO same here
-						}
-					}
+    				// Give arrDepth of 1 for some better indentation in output
+					inspectArray(type, f.get(obj), recursive, depth, 1);
 				} 
-    			catch (IllegalArgumentException | IllegalAccessException e)
+    			catch (IllegalArgumentException | IllegalAccessException e1)
 				{
-					e.printStackTrace();
+					e1.printStackTrace();
 				}
     		}
     		else
@@ -191,12 +171,68 @@ public class Inspector
     		}
     	}
     }
+    
+	public void inspectArray(Class c, Object obj, boolean recursive, int depth, int arrDepth)
+	{
+		// Type checking
+		if (!c.isArray() || !obj.getClass().isArray() || obj.getClass() != c)
+		{
+			System.out.println("Invalid call to inspectArray(Class, Object, boolean, int, int)");
+			return;
+		}
+		
+		// Component type
+		Class compType = c.getComponentType();
+		printWithTabsAndSpaces("Component type: " + compType.getName(), depth, arrDepth);
+		
+		// Length
+		int length = Array.getLength(obj);
+		printWithTabsAndSpaces("Length: " + String.valueOf(length), depth, arrDepth);
+		
+		// Array Contents
+		if (length > 0)
+		{
+			printWithTabsAndSpaces("Array contents:", depth, arrDepth);
+		}
+		
+		for (int i = 0; i < length; i++)
+		{
+			Object arrayObj = Array.get(obj, i);
+			if (arrayObj == null)
+			{
+				printWithTabsAndSpaces(i + ": null", depth, arrDepth);
+			}
+			else if (compType.isPrimitive())
+			{
+				printWithTabsAndSpaces(i + ": " + arrayObj, depth, arrDepth);
+			}
+			else if (compType.isArray())
+			{
+				printWithTabsAndSpaces(i + ": Array", depth, arrDepth);
+				inspectArray(arrayObj.getClass(), arrayObj, recursive, depth, arrDepth + 1);
+			}
+			else
+			{
+				// TODO recursively check objects if flag is on
+				printWithTabsAndSpaces(i + ": " + arrayObj.getClass().getName() + "@" + arrayObj.hashCode() , depth, arrDepth);
+			}
+		}
+	}
 
     private void printWithTabs(String output, int tabs)
     {
+    	printWithTabsAndSpaces(output, tabs, 0);
+    }
+    
+    private void printWithTabsAndSpaces(String output, int tabs, int spaces)
+    {
     	while(tabs-- > 0)
     	{
-    		System.out.print("\t");
+    		System.out.print('\t');
+    	}
+    	while(spaces-- > 0)
+    	{
+    		System.out.print(' ');
     	}
     	System.out.println(output);
     }
