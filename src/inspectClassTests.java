@@ -59,9 +59,9 @@ public class inspectClassTests
 	public void testStringInterfaceNames()
 	{
 		new Inspector().inspect(new String(), false);
-		String e1 = "\nImplements: interface java.io.Serializable";
-		String e2 = "\nImplements: interface java.lang.Comparable";
-		String e3 = "\nImplements: interface java.lang.CharSequence";
+		String e1 = "\nImplements: java.io.Serializable";
+		String e2 = "\nImplements: java.lang.Comparable";
+		String e3 = "\nImplements: java.lang.CharSequence";
 		String output = outStream.toString();
 		assert(output.contains(e1));
 		assert(output.contains(e2));
@@ -148,5 +148,57 @@ public class inspectClassTests
 		String e7 = "\n Modifiers: public static";
 		
 		assert(outStream.toString().contains(e1 + e2 + e3 + e4 + e5 + e6 + e7));
+	}
+	
+	@Test
+	public void testArrayValues()
+	{
+		new Inspector().inspect(new int[] {4, 5, 6}, false);
+		String expected = "0: 4\n1: 5\n2: 6";
+		assert(outStream.toString().contains(expected));
+	}
+	
+	@Test
+	public void testObjectClassDoesntRecurse()
+	{
+		// Test "fails" if it never completes (infinite recursion)
+		new Inspector().inspect(new Object(), true);
+	}
+	
+	@Test
+	public void testNullObject()
+	{
+		new Inspector().inspect(null, false);
+		assertEquals("", outStream.toString());
+	}
+	
+	@Test
+	public void testBadInspectClassCall()
+	{
+		Class c = int.class;
+		Object o = new String();
+		new Inspector().inspectClass(c, o, false, 0);
+		String expected = "ERROR: obj null or obj class not assignable to c in call to inspectClass";
+		assert(outStream.toString().contains(expected));
+	}
+	
+	@Test
+	public void testMultiDimensionalArrayValues()
+	{
+		int[][] arr = new int[][] { {1, 2}, {3, 4}};
+		new Inspector().inspect(arr, false);
+		String e1 = " 0: 1\n 1: 2";
+		String e2 = " 0: 3\n 1: 4";
+		String output = outStream.toString();
+		assert(output.contains(e1));
+		assert(output.contains(e2));
+	}
+	
+	@Test
+	public void testPrivateFieldValue()
+	{
+		new Inspector().inspect(new TestClass(), false);
+		String expected = " Type: boolean\n Modifiers: private\n Value: true";
+		assert(outStream.toString().contains(expected));
 	}
 }

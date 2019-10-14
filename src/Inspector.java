@@ -9,10 +9,13 @@ public class Inspector
 {
 
     public void inspect(Object obj, boolean recursive) 
-    {    			
-        Class c = obj.getClass();
-        System.out.println("Begin Inspection:\n");
-        inspectClass(c, obj, recursive, 0);
+    {    		
+    	if (obj != null)
+    	{
+            Class c = obj.getClass();
+            System.out.println("Begin Inspection:\n");
+            inspectClass(c, obj, recursive, 0);
+    	}
     }
 
     public void inspectClass(Class c, Object obj, boolean recursive, int depth) 

@@ -4,7 +4,7 @@ public class TestClass
 	private String[] test = new String[] { "a", "b", "c"};
 	byte b = 0;
 	char c = 'c';
-	boolean bool = true;
+	private boolean bool = true;
 	String testString = "abc";
 	
 	// Private constructor
