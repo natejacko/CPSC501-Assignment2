@@ -1,0 +1,13 @@
+======================================================
+Filename: script8.txt
+Running Test: [I@7d4991ad
+Recursive: true
+Begin Inspection:
+
+Component type: int
+Length: 3
+Array contents:
+0: 4
+1: 5
+2: 6
+======================================================

@@ -1,0 +1,202 @@
+======================================================
+Filename: script7.txt
+Running Test: [[LClassB;@4aa298b7
+Recursive: true
+Begin Inspection:
+
+Component type: [LClassB;
+Length: 12
+Array contents:
+0: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+1: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+2: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+3: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+4: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+5: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+6: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+7: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+8: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+9: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+10: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+11: Array
+ Component type: ClassB
+ Length: 12
+ Array contents:
+ 0: null
+ 1: null
+ 2: null
+ 3: null
+ 4: null
+ 5: null
+ 6: null
+ 7: null
+ 8: null
+ 9: null
+ 10: null
+ 11: null
+======================================================
