@@ -212,7 +212,7 @@ public class Inspector
     			}
     			else
     			{
-    				printWithTabs(" Reference value: " + fieldType.getName() + "@" + fieldObj.hashCode() , depth);
+    				printWithTabs(" Reference value: " + fieldType.getName() + "@" + Integer.toHexString(System.identityHashCode(fieldObj)) , depth);
     			}
     		}
     	}

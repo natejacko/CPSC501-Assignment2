@@ -1,7 +1,7 @@
 ======================================================
 Filename: script1.txt
 Running Test: ClassA
-Recursive: true
+Recursive: false
 Begin Inspection:
 
 Class Name: ClassA
