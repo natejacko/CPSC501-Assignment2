@@ -1,7 +1,7 @@
 ======================================================
 Filename: script8.txt
 Running Test: Test String
-Recursive: false
+Recursive: true
 Begin Inspection:
 
 Class Name: java.lang.String
@@ -559,5 +559,121 @@ Field name: serialPersistentFields
 Field name: CASE_INSENSITIVE_ORDER
  Type: java.util.Comparator
  Modifiers: public static final
- Reference value: java.util.Comparator@45ee12a7
+ Value:
+	Class Name: java.util.Comparator
+	 Modifiers: public abstract interface
+	No super-class
+	Method name: equals
+	 Parameter type: java.lang.Object
+	 Return type: boolean
+	 Modifiers: public abstract
+	Method name: compare
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: public abstract
+	Method name: reversed
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: thenComparing
+	 Parameter type: java.util.function.Function
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: thenComparing
+	 Parameter type: java.util.function.Function
+	 Parameter type: java.util.Comparator
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: thenComparing
+	 Parameter type: java.util.Comparator
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: thenComparingInt
+	 Parameter type: java.util.function.ToIntFunction
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: thenComparingLong
+	 Parameter type: java.util.function.ToLongFunction
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: thenComparingDouble
+	 Parameter type: java.util.function.ToDoubleFunction
+	 Return type: java.util.Comparator
+	 Modifiers: public
+	Method name: reverseOrder
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: naturalOrder
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: nullsFirst
+	 Parameter type: java.util.Comparator
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: nullsLast
+	 Parameter type: java.util.Comparator
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: comparing
+	 Parameter type: java.util.function.Function
+	 Parameter type: java.util.Comparator
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: comparing
+	 Parameter type: java.util.function.Function
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: comparingInt
+	 Parameter type: java.util.function.ToIntFunction
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: comparingLong
+	 Parameter type: java.util.function.ToLongFunction
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: comparingDouble
+	 Parameter type: java.util.function.ToDoubleFunction
+	 Return type: java.util.Comparator
+	 Modifiers: public static
+	Method name: $deserializeLambda$
+	 Parameter type: java.lang.invoke.SerializedLambda
+	 Return type: java.lang.Object
+	 Modifiers: private static
+	Method name: lambda$comparingDouble$8dcf42ea$1
+	 Parameter type: java.util.function.ToDoubleFunction
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: private static
+	Method name: lambda$comparingLong$6043328a$1
+	 Parameter type: java.util.function.ToLongFunction
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: private static
+	Method name: lambda$comparingInt$7b0bb60$1
+	 Parameter type: java.util.function.ToIntFunction
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: private static
+	Method name: lambda$comparing$77a9974f$1
+	 Parameter type: java.util.function.Function
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: private static
+	Method name: lambda$comparing$ea9a8b3a$1
+	 Parameter type: java.util.Comparator
+	 Parameter type: java.util.function.Function
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: private static
+	Method name: lambda$thenComparing$36697e65$1
+	 Parameter type: java.util.Comparator
+	 Parameter type: java.lang.Object
+	 Parameter type: java.lang.Object
+	 Return type: int
+	 Modifiers: private
 ======================================================

@@ -1,7 +1,7 @@
 ======================================================
 Filename: script5.txt
 Running Test: ClassD
-Recursive: false
+Recursive: true
 Begin Inspection:
 
 Class Name: ClassD
@@ -71,7 +71,105 @@ Method name: getVal3
 Field name: val
  Type: ClassA
  Modifiers: private
- Reference value: ClassA@1540e19d
+ Value:
+	Class Name: ClassA
+	 Modifiers: public final
+	Super-class Name: java.lang.Object
+		Class Name: java.lang.Object
+		 Modifiers: public
+		Object class is the super-class of itself
+		Constructor name: java.lang.Object
+		 Modifiers: public
+		Method name: finalize
+		 Throws: java.lang.Throwable
+		 Return type: void
+		 Modifiers: protected
+		Method name: wait
+		 Throws: java.lang.InterruptedException
+		 Parameter type: long
+		 Parameter type: int
+		 Return type: void
+		 Modifiers: public final
+		Method name: wait
+		 Throws: java.lang.InterruptedException
+		 Parameter type: long
+		 Return type: void
+		 Modifiers: public final native
+		Method name: wait
+		 Throws: java.lang.InterruptedException
+		 Return type: void
+		 Modifiers: public final
+		Method name: equals
+		 Parameter type: java.lang.Object
+		 Return type: boolean
+		 Modifiers: public
+		Method name: toString
+		 Return type: java.lang.String
+		 Modifiers: public
+		Method name: hashCode
+		 Return type: int
+		 Modifiers: public native
+		Method name: getClass
+		 Return type: java.lang.Class
+		 Modifiers: public final native
+		Method name: clone
+		 Throws: java.lang.CloneNotSupportedException
+		 Return type: java.lang.Object
+		 Modifiers: protected native
+		Method name: registerNatives
+		 Return type: void
+		 Modifiers: private static native
+		Method name: notify
+		 Return type: void
+		 Modifiers: public final native
+		Method name: notifyAll
+		 Return type: void
+		 Modifiers: public final native
+	Implements: java.io.Serializable
+		Class Name: java.io.Serializable
+		 Modifiers: public abstract interface
+		No super-class
+	Implements: java.lang.Runnable
+		Class Name: java.lang.Runnable
+		 Modifiers: public abstract interface
+		No super-class
+		Method name: run
+		 Return type: void
+		 Modifiers: public abstract
+	Constructor name: ClassA
+	 Modifiers: public
+	Constructor name: ClassA
+	 Parameter type: int
+	 Modifiers: public
+	Method name: run
+	 Return type: void
+	 Modifiers: public
+	Method name: toString
+	 Return type: java.lang.String
+	 Modifiers: public
+	Method name: setVal
+	 Throws: java.lang.Exception
+	 Parameter type: int
+	 Return type: void
+	 Modifiers: public
+	Method name: getVal
+	 Return type: int
+	 Modifiers: public
+	Method name: printSomething
+	 Return type: void
+	 Modifiers: private
+	Field name: val
+	 Type: int
+	 Modifiers: private
+	 Value: 17
+	Field name: val2
+	 Type: double
+	 Modifiers: private
+	 Value: 0.2
+	Field name: val3
+	 Type: boolean
+	 Modifiers: private
+	 Value: true
 Field name: val2
  Type: ClassA
  Modifiers: private static
