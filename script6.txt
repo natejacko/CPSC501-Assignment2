@@ -4,6 +4,8 @@ Running Test: [LClassB;@232204a1
 Recursive: true
 Begin Inspection:
 
+CLASS INSPECTION
+ARRAY INSPECTION ( [LClassB; )
 Component type: ClassB
 Length: 12
 Array contents:

@@ -26,6 +26,8 @@ public class Inspector
 			printWithTabs("ERROR: obj null or obj class not assignable to c in call to inspectClass", depth);
 			return;
 		}
+		
+		printWithTabs("CLASS INSPECTION", depth);
     	
     	if (c.isArray())
     	{
@@ -67,6 +69,8 @@ public class Inspector
 			return;
 		}
 		
+		printWithTabs("SUPER-CLASS INSPECTION ( " + c.getName() + " )", depth);
+		
 		// Check Object class
 		if (c.equals(Object.class))
 		{
@@ -85,7 +89,7 @@ public class Inspector
 		}
 		else
 		{
-			printWithTabs("No super-class", depth);
+			printWithTabs("None", depth);
 		}
     }
     
@@ -98,12 +102,23 @@ public class Inspector
 			return;
 		}
 		
-    	for (Class i : c.getInterfaces())
-    	{
-    		printWithTabs("Implements: " + i.getName(), depth);
-    		
-    		inspectClass(i, obj, recursive, depth + 1);
-    	}
+		printWithTabs("INTERFACE INSPECTION ( " + c.getName() + " )", depth);
+		
+		Class[] inters = c.getInterfaces();
+		
+		if (inters.length == 0)
+		{
+			printWithTabs("None", depth);
+		}
+		else
+		{
+	    	for (Class i : inters)
+	    	{
+	    		printWithTabs("Implements: " + i.getName(), depth);
+	    		
+	    		inspectClass(i, obj, recursive, depth + 1);
+	    	}
+		}
     }
     
     public void inspectConstructors(Class c, Object obj, int depth)
@@ -115,18 +130,29 @@ public class Inspector
 			return;
 		}
 		
-    	for (Constructor con : c.getDeclaredConstructors())
-    	{
-    		printWithTabs("Constructor name: " + con.getName(), depth);
-    		
-    		for (Parameter p : con.getParameters())
-    		{
-    			printWithTabs(" Parameter type: " +p.getType().getName(), depth);
-    		}
-    		
-    		int mod = con.getModifiers();
-    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
-    	}
+		printWithTabs("CONSTRUCTOR INSPECTION ( " + c.getName() + " )", depth);
+		
+		Constructor[] cons = c.getDeclaredConstructors();
+		
+		if (cons.length == 0)
+		{
+			printWithTabs("None", depth);
+		}
+		else
+		{
+	    	for (Constructor con : cons)
+	    	{
+	    		printWithTabs("Constructor name: " + con.getName(), depth);
+	    		
+	    		for (Parameter p : con.getParameters())
+	    		{
+	    			printWithTabs(" Parameter type: " +p.getType().getName(), depth);
+	    		}
+	    		
+	    		int mod = con.getModifiers();
+	    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
+	    	}
+		}
     }
     
     public void inspectMethods(Class c, Object obj, int depth)
@@ -138,25 +164,36 @@ public class Inspector
 			return;
 		}
 		
-    	for (Method m : c.getDeclaredMethods())
-    	{
-    		printWithTabs("Method name: " + m.getName(), depth);
-    		
-    		for (Class e : m.getExceptionTypes())
-    		{
-    			printWithTabs(" Throws: " + e.getName(), depth);
-    		}
-    		
-    		for (Class p : m.getParameterTypes())
-    		{
-    			printWithTabs(" Parameter type: " + p.getName(), depth);
-    		}
-    		
-    		printWithTabs(" Return type: " + m.getReturnType().getName(), depth);
-    		
-    		int mod = m.getModifiers();
-    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
-    	}
+		printWithTabs("METHOD INSPECTION ( " + c.getName() + " )", depth);
+		
+		Method[] methods = c.getDeclaredMethods();
+		
+		if (methods.length == 0)
+		{
+			printWithTabs("None", depth);
+		}
+		else
+		{
+	    	for (Method m : methods)
+	    	{
+	    		printWithTabs("Method name: " + m.getName(), depth);
+	    		
+	    		for (Class e : m.getExceptionTypes())
+	    		{
+	    			printWithTabs(" Throws: " + e.getName(), depth);
+	    		}
+	    		
+	    		for (Class p : m.getParameterTypes())
+	    		{
+	    			printWithTabs(" Parameter type: " + p.getName(), depth);
+	    		}
+	    		
+	    		printWithTabs(" Return type: " + m.getReturnType().getName(), depth);
+	    		
+	    		int mod = m.getModifiers();
+	    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
+	    	}
+		}
     }
     
     public void inspectFields(Class c, Object obj, boolean recursive, int depth)
@@ -168,54 +205,65 @@ public class Inspector
 			return;
 		}
 		
-    	for (Field f: c.getDeclaredFields())
-    	{
-    		printWithTabs("Field name: " + f.getName(), depth);
-    		
-    		Class fieldType = f.getType();
-    		printWithTabs(" Type: " + fieldType.getName(), depth);
-    		
-    		int mod = f.getModifiers();
-    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
-    		
-    		f.setAccessible(true);
-    		
-    		Object fieldObj = null;
-    		try
-			{
-				fieldObj = f.get(obj);
-			} 
-    		catch (IllegalArgumentException | IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
-    		
-    		if (fieldType.isPrimitive())
-    		{
-    			printWithTabs(" Value: " + fieldObj.toString(), depth);
-    		}
-    		else if (fieldObj == null)
-    		{
-    			printWithTabs(" Value: null", depth);
-    		}
-    		else if (fieldType.isArray())
-    		{
-				inspectArray(fieldType, fieldObj, recursive, depth, 1);
-    		}
-    		else
-    		{
-    			if (recursive)
-    			{
-    				printWithTabs(" Value:", depth);
-    				
-    				inspectClass(fieldType, fieldObj, recursive, depth + 1);
-    			}
-    			else
-    			{
-    				printWithTabs(" Reference value: " + fieldType.getName() + "@" + Integer.toHexString(System.identityHashCode(fieldObj)) , depth);
-    			}
-    		}
-    	}
+		printWithTabs("FIELD INSPECTION ( " + c.getName() + " )", depth);
+		
+		Field[] fs = c.getDeclaredFields();
+		
+		if (fs.length == 0)
+		{
+			printWithTabs("None", depth);
+		}
+		else
+		{
+	    	for (Field f: fs)
+	    	{
+	    		printWithTabs("Field name: " + f.getName(), depth);
+	    		
+	    		Class fieldType = f.getType();
+	    		printWithTabs(" Type: " + fieldType.getName(), depth);
+	    		
+	    		int mod = f.getModifiers();
+	    		printWithTabs(" Modifiers: " + Modifier.toString(mod), depth);
+	    		
+	    		f.setAccessible(true);
+	    		
+	    		Object fieldObj = null;
+	    		try
+				{
+					fieldObj = f.get(obj);
+				} 
+	    		catch (IllegalArgumentException | IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
+	    		
+	    		if (fieldType.isPrimitive())
+	    		{
+	    			printWithTabs(" Value: " + fieldObj.toString(), depth);
+	    		}
+	    		else if (fieldObj == null)
+	    		{
+	    			printWithTabs(" Value: null", depth);
+	    		}
+	    		else if (fieldType.isArray())
+	    		{
+					inspectArray(fieldType, fieldObj, recursive, depth, 1);
+	    		}
+	    		else
+	    		{
+	    			if (recursive)
+	    			{
+	    				printWithTabs(" Value:", depth);
+	    				
+	    				inspectClass(fieldType, fieldObj, recursive, depth + 1);
+	    			}
+	    			else
+	    			{
+	    				printWithTabs(" Reference value: " + fieldType.getName() + "@" + Integer.toHexString(System.identityHashCode(fieldObj)) , depth);
+	    			}
+	    		}
+	    	}
+		}
     }
     
 	public void inspectArray(Class c, Object obj, boolean recursive, int depth, int arrDepth)
@@ -226,6 +274,8 @@ public class Inspector
 			printWithTabs("ERROR: obj null or class not an array or obj class not assignable to c in call to inspectArray", depth);
 			return;
 		}
+		
+		printWithTabsAndSpaces("ARRAY INSPECTION ( " + c.getName() + " )", depth, arrDepth);
 		
 		// Component type
 		Class compType = c.getComponentType();

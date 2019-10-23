@@ -4,20 +4,32 @@ Running Test: ClassB
 Recursive: true
 Begin Inspection:
 
+CLASS INSPECTION
 Class Name: ClassB
  Modifiers: public
+SUPER-CLASS INSPECTION ( ClassB )
 Super-class Name: ClassC
+	CLASS INSPECTION
 	Class Name: ClassC
 	 Modifiers: public abstract
+	SUPER-CLASS INSPECTION ( ClassC )
 	Super-class Name: ClassD
+		CLASS INSPECTION
 		Class Name: ClassD
 		 Modifiers: public
+		SUPER-CLASS INSPECTION ( ClassD )
 		Super-class Name: java.lang.Object
+			CLASS INSPECTION
 			Class Name: java.lang.Object
 			 Modifiers: public
+			SUPER-CLASS INSPECTION ( java.lang.Object )
 			Object class is the super-class of itself
+			INTERFACE INSPECTION ( java.lang.Object )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Object )
 			Constructor name: java.lang.Object
 			 Modifiers: public
+			METHOD INSPECTION ( java.lang.Object )
 			Method name: finalize
 			 Throws: java.lang.Throwable
 			 Return type: void
@@ -63,29 +75,44 @@ Super-class Name: ClassC
 			Method name: notifyAll
 			 Return type: void
 			 Modifiers: public final native
+			FIELD INSPECTION ( java.lang.Object )
+			None
+		INTERFACE INSPECTION ( ClassD )
+		None
+		CONSTRUCTOR INSPECTION ( ClassD )
 		Constructor name: ClassD
 		 Modifiers: public
 		Constructor name: ClassD
 		 Parameter type: int
 		 Modifiers: public
+		METHOD INSPECTION ( ClassD )
 		Method name: toString
 		 Return type: java.lang.String
 		 Modifiers: public
 		Method name: getVal3
 		 Return type: int
 		 Modifiers: public
+		FIELD INSPECTION ( ClassD )
 		Field name: val
 		 Type: ClassA
 		 Modifiers: private
 		 Value:
+			CLASS INSPECTION
 			Class Name: ClassA
 			 Modifiers: public final
+			SUPER-CLASS INSPECTION ( ClassA )
 			Super-class Name: java.lang.Object
+				CLASS INSPECTION
 				Class Name: java.lang.Object
 				 Modifiers: public
+				SUPER-CLASS INSPECTION ( java.lang.Object )
 				Object class is the super-class of itself
+				INTERFACE INSPECTION ( java.lang.Object )
+				None
+				CONSTRUCTOR INSPECTION ( java.lang.Object )
 				Constructor name: java.lang.Object
 				 Modifiers: public
+				METHOD INSPECTION ( java.lang.Object )
 				Method name: finalize
 				 Throws: java.lang.Throwable
 				 Return type: void
@@ -131,22 +158,46 @@ Super-class Name: ClassC
 				Method name: notifyAll
 				 Return type: void
 				 Modifiers: public final native
+				FIELD INSPECTION ( java.lang.Object )
+				None
+			INTERFACE INSPECTION ( ClassA )
 			Implements: java.io.Serializable
+				CLASS INSPECTION
 				Class Name: java.io.Serializable
 				 Modifiers: public abstract interface
-				No super-class
+				SUPER-CLASS INSPECTION ( java.io.Serializable )
+				None
+				INTERFACE INSPECTION ( java.io.Serializable )
+				None
+				CONSTRUCTOR INSPECTION ( java.io.Serializable )
+				None
+				METHOD INSPECTION ( java.io.Serializable )
+				None
+				FIELD INSPECTION ( java.io.Serializable )
+				None
 			Implements: java.lang.Runnable
+				CLASS INSPECTION
 				Class Name: java.lang.Runnable
 				 Modifiers: public abstract interface
-				No super-class
+				SUPER-CLASS INSPECTION ( java.lang.Runnable )
+				None
+				INTERFACE INSPECTION ( java.lang.Runnable )
+				None
+				CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+				None
+				METHOD INSPECTION ( java.lang.Runnable )
 				Method name: run
 				 Return type: void
 				 Modifiers: public abstract
+				FIELD INSPECTION ( java.lang.Runnable )
+				None
+			CONSTRUCTOR INSPECTION ( ClassA )
 			Constructor name: ClassA
 			 Modifiers: public
 			Constructor name: ClassA
 			 Parameter type: int
 			 Modifiers: public
+			METHOD INSPECTION ( ClassA )
 			Method name: run
 			 Return type: void
 			 Modifiers: public
@@ -164,6 +215,7 @@ Super-class Name: ClassC
 			Method name: printSomething
 			 Return type: void
 			 Modifiers: private
+			FIELD INSPECTION ( ClassA )
 			Field name: val
 			 Type: int
 			 Modifiers: private
@@ -187,6 +239,7 @@ Super-class Name: ClassC
 		Field name: vallarray
 		 Type: [LClassA;
 		 Modifiers: private
+		 ARRAY INSPECTION ( [LClassA; )
 		 Component type: ClassA
 		 Length: 10
 		 Array contents:
@@ -200,20 +253,36 @@ Super-class Name: ClassC
 		 7: null
 		 8: null
 		 9: null
+	INTERFACE INSPECTION ( ClassC )
 	Implements: InterfaceA
+		CLASS INSPECTION
 		Class Name: InterfaceA
 		 Modifiers: public abstract interface
-		No super-class
+		SUPER-CLASS INSPECTION ( InterfaceA )
+		None
+		INTERFACE INSPECTION ( InterfaceA )
 		Implements: InterfaceB
+			CLASS INSPECTION
 			Class Name: InterfaceB
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( InterfaceB )
+			None
+			INTERFACE INSPECTION ( InterfaceB )
+			None
+			CONSTRUCTOR INSPECTION ( InterfaceB )
+			None
+			METHOD INSPECTION ( InterfaceB )
 			Method name: func0
 			 Throws: java.lang.Exception
 			 Parameter type: int
 			 Parameter type: boolean
 			 Return type: void
 			 Modifiers: public abstract
+			FIELD INSPECTION ( InterfaceB )
+			None
+		CONSTRUCTOR INSPECTION ( InterfaceA )
+		None
+		METHOD INSPECTION ( InterfaceA )
 		Method name: func1
 		 Throws: java.lang.Exception
 		 Parameter type: int
@@ -229,12 +298,16 @@ Super-class Name: ClassC
 		 Parameter type: java.lang.String
 		 Return type: int
 		 Modifiers: public abstract
+		FIELD INSPECTION ( InterfaceA )
+		None
+	CONSTRUCTOR INSPECTION ( ClassC )
 	Constructor name: ClassC
 	 Modifiers: public
 	Constructor name: ClassC
 	 Parameter type: int
 	 Parameter type: int
 	 Modifiers: public
+	METHOD INSPECTION ( ClassC )
 	Method name: run
 	 Return type: void
 	 Modifiers: public
@@ -247,6 +320,10 @@ Super-class Name: ClassC
 	 Parameter type: boolean
 	 Return type: void
 	 Modifiers: public
+	Method name: func3
+	 Parameter type: int
+	 Return type: void
+	 Modifiers: public abstract
 	Method name: func1
 	 Throws: java.lang.Exception
 	 Parameter type: int
@@ -255,10 +332,6 @@ Super-class Name: ClassC
 	 Parameter type: java.lang.String
 	 Return type: void
 	 Modifiers: public
-	Method name: func3
-	 Parameter type: int
-	 Return type: void
-	 Modifiers: public abstract
 	Method name: func2
 	 Throws: java.lang.Exception
 	 Throws: java.lang.ArithmeticException
@@ -266,18 +339,27 @@ Super-class Name: ClassC
 	 Parameter type: java.lang.String
 	 Return type: int
 	 Modifiers: public
+	FIELD INSPECTION ( ClassC )
 	Field name: val2
 	 Type: ClassA
 	 Modifiers: private
 	 Value:
+		CLASS INSPECTION
 		Class Name: ClassA
 		 Modifiers: public final
+		SUPER-CLASS INSPECTION ( ClassA )
 		Super-class Name: java.lang.Object
+			CLASS INSPECTION
 			Class Name: java.lang.Object
 			 Modifiers: public
+			SUPER-CLASS INSPECTION ( java.lang.Object )
 			Object class is the super-class of itself
+			INTERFACE INSPECTION ( java.lang.Object )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Object )
 			Constructor name: java.lang.Object
 			 Modifiers: public
+			METHOD INSPECTION ( java.lang.Object )
 			Method name: finalize
 			 Throws: java.lang.Throwable
 			 Return type: void
@@ -323,22 +405,46 @@ Super-class Name: ClassC
 			Method name: notifyAll
 			 Return type: void
 			 Modifiers: public final native
+			FIELD INSPECTION ( java.lang.Object )
+			None
+		INTERFACE INSPECTION ( ClassA )
 		Implements: java.io.Serializable
+			CLASS INSPECTION
 			Class Name: java.io.Serializable
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( java.io.Serializable )
+			None
+			INTERFACE INSPECTION ( java.io.Serializable )
+			None
+			CONSTRUCTOR INSPECTION ( java.io.Serializable )
+			None
+			METHOD INSPECTION ( java.io.Serializable )
+			None
+			FIELD INSPECTION ( java.io.Serializable )
+			None
 		Implements: java.lang.Runnable
+			CLASS INSPECTION
 			Class Name: java.lang.Runnable
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( java.lang.Runnable )
+			None
+			INTERFACE INSPECTION ( java.lang.Runnable )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+			None
+			METHOD INSPECTION ( java.lang.Runnable )
 			Method name: run
 			 Return type: void
 			 Modifiers: public abstract
+			FIELD INSPECTION ( java.lang.Runnable )
+			None
+		CONSTRUCTOR INSPECTION ( ClassA )
 		Constructor name: ClassA
 		 Modifiers: public
 		Constructor name: ClassA
 		 Parameter type: int
 		 Modifiers: public
+		METHOD INSPECTION ( ClassA )
 		Method name: run
 		 Return type: void
 		 Modifiers: public
@@ -356,6 +462,7 @@ Super-class Name: ClassC
 		Method name: printSomething
 		 Return type: void
 		 Modifiers: private
+		FIELD INSPECTION ( ClassA )
 		Field name: val
 		 Type: int
 		 Modifiers: private
@@ -372,14 +479,22 @@ Super-class Name: ClassC
 	 Type: ClassA
 	 Modifiers: private
 	 Value:
+		CLASS INSPECTION
 		Class Name: ClassA
 		 Modifiers: public final
+		SUPER-CLASS INSPECTION ( ClassA )
 		Super-class Name: java.lang.Object
+			CLASS INSPECTION
 			Class Name: java.lang.Object
 			 Modifiers: public
+			SUPER-CLASS INSPECTION ( java.lang.Object )
 			Object class is the super-class of itself
+			INTERFACE INSPECTION ( java.lang.Object )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Object )
 			Constructor name: java.lang.Object
 			 Modifiers: public
+			METHOD INSPECTION ( java.lang.Object )
 			Method name: finalize
 			 Throws: java.lang.Throwable
 			 Return type: void
@@ -425,22 +540,46 @@ Super-class Name: ClassC
 			Method name: notifyAll
 			 Return type: void
 			 Modifiers: public final native
+			FIELD INSPECTION ( java.lang.Object )
+			None
+		INTERFACE INSPECTION ( ClassA )
 		Implements: java.io.Serializable
+			CLASS INSPECTION
 			Class Name: java.io.Serializable
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( java.io.Serializable )
+			None
+			INTERFACE INSPECTION ( java.io.Serializable )
+			None
+			CONSTRUCTOR INSPECTION ( java.io.Serializable )
+			None
+			METHOD INSPECTION ( java.io.Serializable )
+			None
+			FIELD INSPECTION ( java.io.Serializable )
+			None
 		Implements: java.lang.Runnable
+			CLASS INSPECTION
 			Class Name: java.lang.Runnable
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( java.lang.Runnable )
+			None
+			INTERFACE INSPECTION ( java.lang.Runnable )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+			None
+			METHOD INSPECTION ( java.lang.Runnable )
 			Method name: run
 			 Return type: void
 			 Modifiers: public abstract
+			FIELD INSPECTION ( java.lang.Runnable )
+			None
+		CONSTRUCTOR INSPECTION ( ClassA )
 		Constructor name: ClassA
 		 Modifiers: public
 		Constructor name: ClassA
 		 Parameter type: int
 		 Modifiers: public
+		METHOD INSPECTION ( ClassA )
 		Method name: run
 		 Return type: void
 		 Modifiers: public
@@ -458,6 +597,7 @@ Super-class Name: ClassC
 		Method name: printSomething
 		 Return type: void
 		 Modifiers: private
+		FIELD INSPECTION ( ClassA )
 		Field name: val
 		 Type: int
 		 Modifiers: private
@@ -474,14 +614,22 @@ Super-class Name: ClassC
 	 Type: ClassA
 	 Modifiers: private
 	 Value:
+		CLASS INSPECTION
 		Class Name: ClassA
 		 Modifiers: public final
+		SUPER-CLASS INSPECTION ( ClassA )
 		Super-class Name: java.lang.Object
+			CLASS INSPECTION
 			Class Name: java.lang.Object
 			 Modifiers: public
+			SUPER-CLASS INSPECTION ( java.lang.Object )
 			Object class is the super-class of itself
+			INTERFACE INSPECTION ( java.lang.Object )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Object )
 			Constructor name: java.lang.Object
 			 Modifiers: public
+			METHOD INSPECTION ( java.lang.Object )
 			Method name: finalize
 			 Throws: java.lang.Throwable
 			 Return type: void
@@ -527,22 +675,46 @@ Super-class Name: ClassC
 			Method name: notifyAll
 			 Return type: void
 			 Modifiers: public final native
+			FIELD INSPECTION ( java.lang.Object )
+			None
+		INTERFACE INSPECTION ( ClassA )
 		Implements: java.io.Serializable
+			CLASS INSPECTION
 			Class Name: java.io.Serializable
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( java.io.Serializable )
+			None
+			INTERFACE INSPECTION ( java.io.Serializable )
+			None
+			CONSTRUCTOR INSPECTION ( java.io.Serializable )
+			None
+			METHOD INSPECTION ( java.io.Serializable )
+			None
+			FIELD INSPECTION ( java.io.Serializable )
+			None
 		Implements: java.lang.Runnable
+			CLASS INSPECTION
 			Class Name: java.lang.Runnable
 			 Modifiers: public abstract interface
-			No super-class
+			SUPER-CLASS INSPECTION ( java.lang.Runnable )
+			None
+			INTERFACE INSPECTION ( java.lang.Runnable )
+			None
+			CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+			None
+			METHOD INSPECTION ( java.lang.Runnable )
 			Method name: run
 			 Return type: void
 			 Modifiers: public abstract
+			FIELD INSPECTION ( java.lang.Runnable )
+			None
+		CONSTRUCTOR INSPECTION ( ClassA )
 		Constructor name: ClassA
 		 Modifiers: public
 		Constructor name: ClassA
 		 Parameter type: int
 		 Modifiers: public
+		METHOD INSPECTION ( ClassA )
 		Method name: run
 		 Return type: void
 		 Modifiers: public
@@ -560,6 +732,7 @@ Super-class Name: ClassC
 		Method name: printSomething
 		 Return type: void
 		 Modifiers: private
+		FIELD INSPECTION ( ClassA )
 		Field name: val
 		 Type: int
 		 Modifiers: private
@@ -572,15 +745,27 @@ Super-class Name: ClassC
 		 Type: boolean
 		 Modifiers: private
 		 Value: true
+INTERFACE INSPECTION ( ClassB )
 Implements: java.lang.Runnable
+	CLASS INSPECTION
 	Class Name: java.lang.Runnable
 	 Modifiers: public abstract interface
-	No super-class
+	SUPER-CLASS INSPECTION ( java.lang.Runnable )
+	None
+	INTERFACE INSPECTION ( java.lang.Runnable )
+	None
+	CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+	None
+	METHOD INSPECTION ( java.lang.Runnable )
 	Method name: run
 	 Return type: void
 	 Modifiers: public abstract
+	FIELD INSPECTION ( java.lang.Runnable )
+	None
+CONSTRUCTOR INSPECTION ( ClassB )
 Constructor name: ClassB
  Modifiers: public
+METHOD INSPECTION ( ClassB )
 Method name: run
  Return type: void
  Modifiers: public
@@ -591,18 +776,27 @@ Method name: func3
  Parameter type: int
  Return type: void
  Modifiers: public
+FIELD INSPECTION ( ClassB )
 Field name: val
  Type: ClassA
  Modifiers: private
  Value:
+	CLASS INSPECTION
 	Class Name: ClassA
 	 Modifiers: public final
+	SUPER-CLASS INSPECTION ( ClassA )
 	Super-class Name: java.lang.Object
+		CLASS INSPECTION
 		Class Name: java.lang.Object
 		 Modifiers: public
+		SUPER-CLASS INSPECTION ( java.lang.Object )
 		Object class is the super-class of itself
+		INTERFACE INSPECTION ( java.lang.Object )
+		None
+		CONSTRUCTOR INSPECTION ( java.lang.Object )
 		Constructor name: java.lang.Object
 		 Modifiers: public
+		METHOD INSPECTION ( java.lang.Object )
 		Method name: finalize
 		 Throws: java.lang.Throwable
 		 Return type: void
@@ -648,22 +842,46 @@ Field name: val
 		Method name: notifyAll
 		 Return type: void
 		 Modifiers: public final native
+		FIELD INSPECTION ( java.lang.Object )
+		None
+	INTERFACE INSPECTION ( ClassA )
 	Implements: java.io.Serializable
+		CLASS INSPECTION
 		Class Name: java.io.Serializable
 		 Modifiers: public abstract interface
-		No super-class
+		SUPER-CLASS INSPECTION ( java.io.Serializable )
+		None
+		INTERFACE INSPECTION ( java.io.Serializable )
+		None
+		CONSTRUCTOR INSPECTION ( java.io.Serializable )
+		None
+		METHOD INSPECTION ( java.io.Serializable )
+		None
+		FIELD INSPECTION ( java.io.Serializable )
+		None
 	Implements: java.lang.Runnable
+		CLASS INSPECTION
 		Class Name: java.lang.Runnable
 		 Modifiers: public abstract interface
-		No super-class
+		SUPER-CLASS INSPECTION ( java.lang.Runnable )
+		None
+		INTERFACE INSPECTION ( java.lang.Runnable )
+		None
+		CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+		None
+		METHOD INSPECTION ( java.lang.Runnable )
 		Method name: run
 		 Return type: void
 		 Modifiers: public abstract
+		FIELD INSPECTION ( java.lang.Runnable )
+		None
+	CONSTRUCTOR INSPECTION ( ClassA )
 	Constructor name: ClassA
 	 Modifiers: public
 	Constructor name: ClassA
 	 Parameter type: int
 	 Modifiers: public
+	METHOD INSPECTION ( ClassA )
 	Method name: run
 	 Return type: void
 	 Modifiers: public
@@ -681,6 +899,7 @@ Field name: val
 	Method name: printSomething
 	 Return type: void
 	 Modifiers: private
+	FIELD INSPECTION ( ClassA )
 	Field name: val
 	 Type: int
 	 Modifiers: private
@@ -697,14 +916,22 @@ Field name: val2
  Type: ClassA
  Modifiers: private
  Value:
+	CLASS INSPECTION
 	Class Name: ClassA
 	 Modifiers: public final
+	SUPER-CLASS INSPECTION ( ClassA )
 	Super-class Name: java.lang.Object
+		CLASS INSPECTION
 		Class Name: java.lang.Object
 		 Modifiers: public
+		SUPER-CLASS INSPECTION ( java.lang.Object )
 		Object class is the super-class of itself
+		INTERFACE INSPECTION ( java.lang.Object )
+		None
+		CONSTRUCTOR INSPECTION ( java.lang.Object )
 		Constructor name: java.lang.Object
 		 Modifiers: public
+		METHOD INSPECTION ( java.lang.Object )
 		Method name: finalize
 		 Throws: java.lang.Throwable
 		 Return type: void
@@ -750,22 +977,46 @@ Field name: val2
 		Method name: notifyAll
 		 Return type: void
 		 Modifiers: public final native
+		FIELD INSPECTION ( java.lang.Object )
+		None
+	INTERFACE INSPECTION ( ClassA )
 	Implements: java.io.Serializable
+		CLASS INSPECTION
 		Class Name: java.io.Serializable
 		 Modifiers: public abstract interface
-		No super-class
+		SUPER-CLASS INSPECTION ( java.io.Serializable )
+		None
+		INTERFACE INSPECTION ( java.io.Serializable )
+		None
+		CONSTRUCTOR INSPECTION ( java.io.Serializable )
+		None
+		METHOD INSPECTION ( java.io.Serializable )
+		None
+		FIELD INSPECTION ( java.io.Serializable )
+		None
 	Implements: java.lang.Runnable
+		CLASS INSPECTION
 		Class Name: java.lang.Runnable
 		 Modifiers: public abstract interface
-		No super-class
+		SUPER-CLASS INSPECTION ( java.lang.Runnable )
+		None
+		INTERFACE INSPECTION ( java.lang.Runnable )
+		None
+		CONSTRUCTOR INSPECTION ( java.lang.Runnable )
+		None
+		METHOD INSPECTION ( java.lang.Runnable )
 		Method name: run
 		 Return type: void
 		 Modifiers: public abstract
+		FIELD INSPECTION ( java.lang.Runnable )
+		None
+	CONSTRUCTOR INSPECTION ( ClassA )
 	Constructor name: ClassA
 	 Modifiers: public
 	Constructor name: ClassA
 	 Parameter type: int
 	 Modifiers: public
+	METHOD INSPECTION ( ClassA )
 	Method name: run
 	 Return type: void
 	 Modifiers: public
@@ -783,6 +1034,7 @@ Field name: val2
 	Method name: printSomething
 	 Return type: void
 	 Modifiers: private
+	FIELD INSPECTION ( ClassA )
 	Field name: val
 	 Type: int
 	 Modifiers: private

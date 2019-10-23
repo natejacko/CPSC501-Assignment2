@@ -4,14 +4,22 @@ Running Test: Test String
 Recursive: true
 Begin Inspection:
 
+CLASS INSPECTION
 Class Name: java.lang.String
  Modifiers: public final
+SUPER-CLASS INSPECTION ( java.lang.String )
 Super-class Name: java.lang.Object
+	CLASS INSPECTION
 	Class Name: java.lang.Object
 	 Modifiers: public
+	SUPER-CLASS INSPECTION ( java.lang.Object )
 	Object class is the super-class of itself
+	INTERFACE INSPECTION ( java.lang.Object )
+	None
+	CONSTRUCTOR INSPECTION ( java.lang.Object )
 	Constructor name: java.lang.Object
 	 Modifiers: public
+	METHOD INSPECTION ( java.lang.Object )
 	Method name: finalize
 	 Throws: java.lang.Throwable
 	 Return type: void
@@ -57,22 +65,51 @@ Super-class Name: java.lang.Object
 	Method name: notifyAll
 	 Return type: void
 	 Modifiers: public final native
+	FIELD INSPECTION ( java.lang.Object )
+	None
+INTERFACE INSPECTION ( java.lang.String )
 Implements: java.io.Serializable
+	CLASS INSPECTION
 	Class Name: java.io.Serializable
 	 Modifiers: public abstract interface
-	No super-class
+	SUPER-CLASS INSPECTION ( java.io.Serializable )
+	None
+	INTERFACE INSPECTION ( java.io.Serializable )
+	None
+	CONSTRUCTOR INSPECTION ( java.io.Serializable )
+	None
+	METHOD INSPECTION ( java.io.Serializable )
+	None
+	FIELD INSPECTION ( java.io.Serializable )
+	None
 Implements: java.lang.Comparable
+	CLASS INSPECTION
 	Class Name: java.lang.Comparable
 	 Modifiers: public abstract interface
-	No super-class
+	SUPER-CLASS INSPECTION ( java.lang.Comparable )
+	None
+	INTERFACE INSPECTION ( java.lang.Comparable )
+	None
+	CONSTRUCTOR INSPECTION ( java.lang.Comparable )
+	None
+	METHOD INSPECTION ( java.lang.Comparable )
 	Method name: compareTo
 	 Parameter type: java.lang.Object
 	 Return type: int
 	 Modifiers: public abstract
+	FIELD INSPECTION ( java.lang.Comparable )
+	None
 Implements: java.lang.CharSequence
+	CLASS INSPECTION
 	Class Name: java.lang.CharSequence
 	 Modifiers: public abstract interface
-	No super-class
+	SUPER-CLASS INSPECTION ( java.lang.CharSequence )
+	None
+	INTERFACE INSPECTION ( java.lang.CharSequence )
+	None
+	CONSTRUCTOR INSPECTION ( java.lang.CharSequence )
+	None
+	METHOD INSPECTION ( java.lang.CharSequence )
 	Method name: toString
 	 Return type: java.lang.String
 	 Modifiers: public abstract
@@ -100,6 +137,9 @@ Implements: java.lang.CharSequence
 	Method name: lambda$chars$0
 	 Return type: java.util.Spliterator$OfInt
 	 Modifiers: private
+	FIELD INSPECTION ( java.lang.CharSequence )
+	None
+CONSTRUCTOR INSPECTION ( java.lang.String )
 Constructor name: java.lang.String
  Parameter type: [B
  Parameter type: int
@@ -166,6 +206,7 @@ Constructor name: java.lang.String
  Parameter type: int
  Parameter type: int
  Modifiers: public
+METHOD INSPECTION ( java.lang.String )
 Method name: equals
  Parameter type: java.lang.Object
  Return type: boolean
@@ -526,9 +567,11 @@ Method name: copyValueOf
 Method name: intern
  Return type: java.lang.String
  Modifiers: public native
+FIELD INSPECTION ( java.lang.String )
 Field name: value
  Type: [C
  Modifiers: private final
+ ARRAY INSPECTION ( [C )
  Component type: char
  Length: 11
  Array contents:
@@ -554,15 +597,23 @@ Field name: serialVersionUID
 Field name: serialPersistentFields
  Type: [Ljava.io.ObjectStreamField;
  Modifiers: private static final
+ ARRAY INSPECTION ( [Ljava.io.ObjectStreamField; )
  Component type: java.io.ObjectStreamField
  Length: 0
 Field name: CASE_INSENSITIVE_ORDER
  Type: java.util.Comparator
  Modifiers: public static final
  Value:
+	CLASS INSPECTION
 	Class Name: java.util.Comparator
 	 Modifiers: public abstract interface
-	No super-class
+	SUPER-CLASS INSPECTION ( java.util.Comparator )
+	None
+	INTERFACE INSPECTION ( java.util.Comparator )
+	None
+	CONSTRUCTOR INSPECTION ( java.util.Comparator )
+	None
+	METHOD INSPECTION ( java.util.Comparator )
 	Method name: equals
 	 Parameter type: java.lang.Object
 	 Return type: boolean
@@ -676,4 +727,6 @@ Field name: CASE_INSENSITIVE_ORDER
 	 Parameter type: java.lang.Object
 	 Return type: int
 	 Modifiers: private
+	FIELD INSPECTION ( java.util.Comparator )
+	None
 ======================================================
